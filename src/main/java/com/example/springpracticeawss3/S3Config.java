@@ -12,6 +12,7 @@ import software.amazon.awssdk.services.s3.S3Configuration;
 import software.amazon.awssdk.services.s3.presigner.S3Presigner;
 
 import java.net.URI;
+import java.time.Duration;
 
 @Configuration
 public class S3Config {
@@ -42,7 +43,15 @@ public class S3Config {
                 .serviceConfiguration(
                         S3Configuration.builder()
                                 .pathStyleAccessEnabled(pathStyleAccessEnabled) // Path-based access enabled
+                                .chunkedEncodingEnabled(true) // Enable chunked encoding for large file uploads
                                 .build())
+                .overrideConfiguration((builder) -> {
+                    builder.apiCallTimeout(Duration.ofMinutes(5))
+                            .apiCallAttemptTimeout(Duration.ofMinutes(1))
+                            .retryPolicy()
+                            .toBuilder()
+                            .build();
+                })
                 .endpointOverride(URI.create(endpoint)) // Custom endpoint for S3-compatible storage
                 .build();
     }
@@ -62,6 +71,13 @@ public class S3Config {
                         S3Configuration.builder()
                                 .pathStyleAccessEnabled(true)
                                 .build())
+                .overrideConfiguration((builder) -> {
+                    builder.apiCallTimeout(Duration.ofMinutes(5))
+                            .apiCallAttemptTimeout(Duration.ofMinutes(1))
+                            .retryPolicy()
+                            .toBuilder()
+                            .build();
+                })
                 .endpointOverride(URI.create(endpoint)) // Custom endpoint for S3-compatible storage
                 .build();
     }
