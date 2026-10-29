@@ -48,8 +48,8 @@ public class S3Config {
                 .overrideConfiguration((builder) -> {
                     builder.apiCallTimeout(Duration.ofMinutes(5))
                             .apiCallAttemptTimeout(Duration.ofMinutes(1))
-                            .retryPolicy()
-                            .toBuilder()
+//                            .retryPolicy()
+//                            .toBuilder()
                             .build();
                 })
                 .endpointOverride(URI.create(endpoint)) // Custom endpoint for S3-compatible storage
@@ -74,8 +74,8 @@ public class S3Config {
                 .overrideConfiguration((builder) -> {
                     builder.apiCallTimeout(Duration.ofMinutes(5))
                             .apiCallAttemptTimeout(Duration.ofMinutes(1))
-                            .retryPolicy()
-                            .toBuilder()
+//                            .retryPolicy()
+//                            .toBuilder()
                             .build();
                 })
                 .endpointOverride(URI.create(endpoint)) // Custom endpoint for S3-compatible storage
