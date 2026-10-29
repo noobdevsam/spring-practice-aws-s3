@@ -113,9 +113,7 @@ public class S3PracticeService {
         s3Client.listObjectsV2Paginator(listRequest)
                 .stream()
                 .flatMap(response -> response.contents().stream())
-                .forEach(object -> {
-                    System.out.println("Found object: " + object.key() + " (" + object.size() + " bytes)");
-                });
+                .forEach(object -> System.out.println("Found object: " + object.key() + " (" + object.size() + " bytes)"));
     }
 
     // ==========================================
