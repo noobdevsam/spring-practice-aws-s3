@@ -12,6 +12,7 @@ import software.amazon.awssdk.services.s3.presigner.model.PutObjectPresignReques
 import java.io.InputStream;
 import java.nio.file.Path;
 import java.time.Duration;
+import java.util.List;
 
 @Service
 public class S3PracticeService {
@@ -34,7 +35,7 @@ public class S3PracticeService {
         s3Client.createBucket(request);
     }
 
-    public void listBuckets() {
+    public List<Bucket> listBuckets() {
         var response = s3Client.listBuckets();
 //        var list = s3Client.listObjectsV2Paginator(ListObjectsV2Request.builder().bucket("your-bucket-name").build());
         response.buckets().forEach(bucket -> {
@@ -45,6 +46,7 @@ public class S3PracticeService {
                     """.formatted(bucket.name(), bucket.creationDate(), bucket.bucketRegion());
             System.out.println(details);
         });
+        return response.buckets();
     }
 
 
