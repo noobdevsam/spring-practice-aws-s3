@@ -1,0 +1,7 @@
+spring:
+    application:
+        name: spring-practice-aws-s3
+
+    threads:
+        virtual:
+            enabled: true
