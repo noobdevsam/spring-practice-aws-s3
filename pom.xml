@@ -27,7 +27,7 @@
         <url/>
     </scm>
     <properties>
-        <java.version>27</java.version>
+        <java.version>25</java.version>
         <aws.s3.version>2.57.5</aws.s3.version>
     </properties>
     <dependencies>
