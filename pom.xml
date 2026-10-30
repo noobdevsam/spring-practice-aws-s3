@@ -64,6 +64,32 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <image>
+                        <!-- Target image name -->
+                        <name>spring-practice-aws-s3:latest</name>
+
+                        <!-- BellSoft Hardened / Alpaquita Builder or Paketo Builder -->
+                        <builder>bellsoft/buildpacks.builder:musl</builder>
+
+                        <!-- Buildpack Environment Variables -->
+                        <env>
+                            <!-- Force Java 25 (Latest LTS) -->
+                            <BP_JVM_VERSION>25</BP_JVM_VERSION>
+
+                            <!-- Build a Native Executable Binary -->
+                            <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
+
+                            <!-- Disable AOT / CDS Caching explicitly to relies on pure statical aot analysis-->
+                            <BP_JVM_AOTCACHE_ENABLED>false</BP_JVM_AOTCACHE_ENABLED>
+                            <BP_JVM_CDS_ENABLED>false</BP_JVM_CDS_ENABLED>
+                        </env>
+                    </image>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.graalvm.buildtools</groupId>
+                <artifactId>native-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
