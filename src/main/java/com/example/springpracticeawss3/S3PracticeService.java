@@ -105,18 +105,18 @@ public class S3PracticeService {
     // 5. PAGINATED OBJECT LISTING
     // Safe for buckets with millions of objects using iterators
     // ==========================================
-    public void listObjectsPaginated(String bucketName, String prefix) {
-        var listRequest = ListObjectsV2Request.builder()
-                .bucket(bucketName)
-                .prefix(prefix)
-                .maxKeys(50)
-                .build();
-
-        s3Client.listObjectsV2Paginator(listRequest)
-                .stream()
-                .flatMap(response -> response.contents().stream())
-                .forEach(object -> System.out.println("Found object: " + object.key() + " (" + object.size() + " bytes)"));
-    }
+//    public void listObjectsPaginated(String bucketName, String prefix) {
+//        var listRequest = ListObjectsV2Request.builder()
+//                .bucket(bucketName)
+//                .prefix(prefix)
+//                .maxKeys(50)
+//                .build();
+//
+//        s3Client.listObjectsV2Paginator(listRequest)
+//                .stream()
+//                .flatMap(response -> response.contents().stream())
+//                .forEach(object -> System.out.println("Found object: " + object.key() + " (" + object.size() + " bytes)"));
+//    }
 
     // ==========================================
     // 6. PRESIGNED URLs (GET & PUT)
