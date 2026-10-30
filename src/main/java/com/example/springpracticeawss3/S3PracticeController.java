@@ -11,7 +11,7 @@ import java.time.Duration;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/s3/practice")
+@RequestMapping("/api/v1/practice/s3")
 public class S3PracticeController {
 
     private final S3PracticeService s3PracticeService;
@@ -74,7 +74,7 @@ public class S3PracticeController {
         return ResponseEntity.ok("Streamed upload successful for key: " + key);
     }
 
-    @DeleteMapping("/object/delete")
+    @DeleteMapping("/objects")
     public ResponseEntity<String> deleteFile(
             @RequestParam("key") String key,
             @RequestParam("bucketName") String bucketName
